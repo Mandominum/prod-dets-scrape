@@ -2,8 +2,9 @@
 
 import { useAuth } from "@/lib/auth/context";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ScrapeUrlForm } from "@/components/scrape-url-form";
 import { LogOut, Package, List, FolderOpen } from "lucide-react";
 
 export default function DashboardPage() {
@@ -105,19 +106,13 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Add Product Form */}
         <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-          <h2 className="text-xl font-bold mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Button className="w-full justify-start" size="lg">
-              <Package className="h-5 w-5 mr-2" />
-              Add Product URL
-            </Button>
-            <Button className="w-full justify-start" size="lg" variant="outline">
-              <List className="h-5 w-5 mr-2" />
-              Create New List
-            </Button>
-          </div>
+          <h2 className="text-xl font-bold mb-4">Add Product</h2>
+          <ScrapeUrlForm onSuccess={(productId) => {
+            console.log("Product added:", productId);
+            // TODO: Refresh products list or show success notification
+          }} />
         </div>
 
         {/* Coming Soon */}
